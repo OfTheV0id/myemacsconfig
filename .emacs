@@ -144,9 +144,10 @@
 (use-package vterm)
 
 ;;always line center
-(setq maximum-scroll-margin 0.5
-      scroll-margin 99
-      scroll-conservatively 101)
+(setq ;; maximum-scroll-margin 0.5
+      scroll-margin 10
+      ;; scroll-conservatively 101
+      )
 
 ;;----------------------CODE--------------------------
 
@@ -174,12 +175,6 @@
 
 ;;rewrite some var together
 (use-package iedit)
-;;lsp mode
-(use-package lsp-mode
-  :custom ((lsp-headerline-breadcrumb-enable nil))
-  :init (setq lsp-completion-provider :none)
-  ;; :hook (tsx-ts-mode . lsp-deferred)
-  )
 
 ;;markdown
 (use-package markdown-mode)
@@ -228,7 +223,10 @@
 					     (tsx-ts-mode :language-id "typescriptreact")
 					     (typescript-ts-mode :language-id "typescript")
 					     (typescript-mode :language-id "typescript"))
-					     . ("npx" "tsc" "--lsp" "--stdio"))))
+					     . ;; ("npx" "tsc" "--lsp" "--stdio")
+					     ;; ("tailwindcss-language-server" "--stdio")
+					     ("rass" "--no-stream-diagnostics" "--" "npx" "tsc" "--lsp" "--stdio" "--" "tailwindcss-language-server" "--stdio")
+					     )))
 ;;----------------------EGLOT--------------------------
 
 ;; ;;add auto complete support for vscode-html-lsp
@@ -236,3 +234,20 @@
 ;;   :hook (mhtml-mode . yas-minor-mode)
 ;;   :config
 ;;   (yas-reload-all))
+(custom-set-variables
+ ;; custom-set-variables was added by Custom.
+ ;; If you edit it by hand, you could mess it up, so be careful.
+ ;; Your init file should contain only one such instance.
+ ;; If there is more than one, they won't work right.
+ '(package-selected-packages
+   '(ace-window colorful-mode company consult corfu csv-mode dired-du
+		docker docker-compose-mode dockerfile-mode drag-stuff
+		eglot ein eldoc-box exec-path-from-shell git go-mode
+		grip-mode iedit json-mode lsp-pyright lsp-ui orderless
+		pdf-tools poetry rg vertico vterm xclip yasnippet)))
+(custom-set-faces
+ ;; custom-set-faces was added by Custom.
+ ;; If you edit it by hand, you could mess it up, so be careful.
+ ;; Your init file should contain only one such instance.
+ ;; If there is more than one, they won't work right.
+ )
