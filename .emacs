@@ -17,6 +17,9 @@
 (tool-bar-mode -1)
 (scroll-bar-mode -1)
 
+;;buffer禁止左右布局
+(setq split-width-threshold nil)
+
 ;;配置插件包源 
 (require 'package)			
 (setq package-archives
@@ -72,7 +75,7 @@
 (setq initial-buffer-choice "~/work")
 
 ;;font size
-(set-face-attribute 'default nil :height 160)
+(set-face-attribute 'default nil :height 150)
 
 ;;global pair mode 
 (electric-pair-mode 1)
@@ -90,7 +93,7 @@
 (global-subword-mode 1)
 
 ;;git
-(use-package git)
+(use-package magit)
 
 ;;see folder size
 (use-package dired-du)
@@ -225,8 +228,10 @@
 					     (typescript-mode :language-id "typescript"))
 					     . ;; ("npx" "tsc" "--lsp" "--stdio")
 					     ;; ("tailwindcss-language-server" "--stdio")
-					     ("rass" "--no-stream-diagnostics" "--" "npx" "tsc" "--lsp" "--stdio" "--" "tailwindcss-language-server" "--stdio")
+					     ("rass" "--no-stream-diagnostics" "--" "npx" "tsc" "--lsp" "-stdio" "--" "tailwindcss-language-server" "--stdio")
 					     )))
+(add-hook 'tsx-ts-mode-hook (lambda () (modify-syntax-entry ?- "_")))
+
 ;;----------------------EGLOT--------------------------
 
 ;; ;;add auto complete support for vscode-html-lsp
@@ -243,8 +248,9 @@
    '(ace-window colorful-mode company consult corfu csv-mode dired-du
 		docker docker-compose-mode dockerfile-mode drag-stuff
 		eglot ein eldoc-box exec-path-from-shell git go-mode
-		grip-mode iedit json-mode lsp-pyright lsp-ui orderless
-		pdf-tools poetry rg vertico vterm xclip yasnippet)))
+		grip-mode iedit json-mode lsp-pyright lsp-ui magit
+		orderless pdf-tools poetry rg vertico vterm xclip
+		yasnippet)))
 (custom-set-faces
  ;; custom-set-faces was added by Custom.
  ;; If you edit it by hand, you could mess it up, so be careful.
