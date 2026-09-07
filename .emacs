@@ -94,9 +94,15 @@
 
 ;;git
 (use-package magit)
+(use-package forge
+  :after magit)
+(setq auth-sources '("~/.authinfo"))
 
 ;;see folder size
-(use-package dired-du)
+(use-package dired-du
+  :hook (dired-mode . dired-du-mode)
+  :config
+  (setq dired-du-size-format t))
 
 ;;corfu auto complete
 (use-package corfu
@@ -161,6 +167,10 @@
 
 ;;ipynb
 (use-package ein)
+
+(use-package nginx-mode)
+
+(use-package dotenv-mode)
 
 ;;csv mode
 (use-package csv-mode
@@ -246,11 +256,11 @@
  ;; If there is more than one, they won't work right.
  '(package-selected-packages
    '(ace-window colorful-mode company consult corfu csv-mode dired-du
-		docker docker-compose-mode dockerfile-mode drag-stuff
-		eglot ein eldoc-box exec-path-from-shell git go-mode
-		grip-mode iedit json-mode lsp-pyright lsp-ui magit
-		orderless pdf-tools poetry rg vertico vterm xclip
-		yasnippet)))
+		docker docker-compose-mode dockerfile-mode dotenv-mode
+		drag-stuff eglot ein eldoc-box exec-path-from-shell
+		forge git go-mode grip-mode iedit json-mode
+		lsp-pyright lsp-ui magit nginx-mode orderless
+		pdf-tools poetry rg vertico vterm xclip yasnippet)))
 (custom-set-faces
  ;; custom-set-faces was added by Custom.
  ;; If you edit it by hand, you could mess it up, so be careful.
